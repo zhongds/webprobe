@@ -5,14 +5,14 @@ import { GlobalVal } from '../config/global'
 export function getCommonMsg() {
   let u = (navigator as any).connection
   let data: CommonMsg = {
-    t: '',
-    page: getPage(),
+    t: '', // 类型
+    page: getPage(), // 页面地址 pathname
     times: 1,
-    v: Config.appVersion,
-    token: Config.token,
-    e: Config.environment,
-    begin: new Date().getTime(),
-    uid: getUid(),
+    v: Config.appVersion, // 版本
+    token: Config.token, // token，识别用户
+    e: Config.environment, // 环境
+    begin: new Date().getTime(), // 当前统计时间
+    uid: getUid(), // 前端自动生成的UID，可以作为UV的识别
     sid: GlobalVal.sid,
     sr: screen.width + "x" + screen.height,
     vp: getScreen(),

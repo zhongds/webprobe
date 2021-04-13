@@ -244,7 +244,7 @@ export function handleHistorystatechange(e): void {
   page && setPage(page, false)
 }
 
-// 处理pv
+// 行为上报
 export function handleNavigation(page): void {
   let commonMsg = getCommonMsg()
   let msg: behaviorMsg = {
