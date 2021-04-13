@@ -17,12 +17,12 @@ class BombayController extends Controller {
       },
       message: 'success',
     };
-    ctx.logger.info('开始上报～～～～');
-    const res = await ctx.service.uplog.pub(data);
-    ctx.logger.info('结束上报～～～～');
-    ctx.status = res.status;
-    ctx.set(res.headers);
-    ctx.body = res.data;
+    // ctx.logger.info('开始上报～～～～');
+    // const res = await ctx.service.uplog.pub(data);
+    // ctx.logger.info('结束上报～～～～');
+    // ctx.status = res.status;
+    // ctx.set(res.headers);
+    ctx.body = data;
   }
 }
 
