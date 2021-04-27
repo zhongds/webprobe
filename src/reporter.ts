@@ -1,26 +1,33 @@
 
 import { Config, } from './config'
+import { GlobalVal, resetGlobalCacheReports } from './config/global';
 import { queryString, serialize, warn } from './utils/tools'
 
 // 上报
 export function report(e: ReportData) {
-    "res" === e.t ? 
+  "res" === e.t ? 
     send(e) 
       : "error" === e.t ? send(e) 
       : "behavior" === e.t ? send(e) 
       : "health" === e.t && window && window.navigator && "function" == typeof window.navigator.sendBeacon ? sendBeacon(e) 
       : send(e);
-  return this
+  return;
 }
 
 // post上报
 export function send(msg: ReportData) {
-  var body = msg[msg.t]
-  delete msg[msg.t]
-  var url = `${Config.reportUrl}?${serialize(msg)}`
-  post(url, {
-    [msg.t]: body
-  })
+  GlobalVal.cacheReports.push(msg);
+  if ('complete' !== window.document.readyState) {
+    return;
+  }
+  // 延时500毫秒 上报
+  setTimeout(() => {
+    if (GlobalVal.cacheReports.length > 0) {
+      var url = Config.reportUrl;
+      post(url, GlobalVal.cacheReports);
+      resetGlobalCacheReports();
+    }
+  }, 500);
   // new Image().src = `${Config.reportUrl}?${serialize(msg)}`
 }
 
@@ -41,10 +48,8 @@ export function post(url, body) {
 }
 
 // 健康检查上报
-export function sendBeacon(e:any) {
-  "object" == typeof e && (e = serialize(e));
-  e = `${Config.reportUrl}?${e}`
+export function sendBeacon(e: ReportData) {
   window && window.navigator && "function" == typeof window.navigator.sendBeacon 
-    ? window.navigator.sendBeacon(e) 
+    ? window.navigator.sendBeacon(Config.reportUrl, JSON.stringify(e)) 
     : warn("[arms] navigator.sendBeacon not surported")
 }

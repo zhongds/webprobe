@@ -13,6 +13,7 @@ export let GlobalVal = {
   },
   circle: false,
   cssInserted: false,
+  cacheReports: [], // 缓存要上报的资源
 }
 
 export function setGlobalPage(page) {
@@ -36,4 +37,8 @@ export function resetGlobalHealth() {
     apisucc: 0,
     apifail: 0
   } 
+}
+
+export function resetGlobalCacheReports() {
+  GlobalVal.cacheReports = [];
 }

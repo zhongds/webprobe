@@ -5,7 +5,7 @@
   "main": "dist/bombay.js",
   "scripts": {
     "dev": "rollup -c -w",
-    "build": "rollup -c --environment INCLUDE_DEPS,BUILD:production"
+    "build": "rollup -c --environment INCLUDE_DEPS"
   },
   "repository": {
     "type": "git",

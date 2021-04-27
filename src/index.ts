@@ -16,6 +16,7 @@ export default class Bombay {
       console.warn('请输入一个token')
       return
     }
+    console.log('init~~~~');
     setConfig(options)
     let page = Config.enableSPA ? parseHash(location.hash.toLowerCase()) : location.pathname.toLowerCase()
     setPage(page, true)

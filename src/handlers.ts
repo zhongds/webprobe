@@ -330,6 +330,7 @@ function reportCaughtError(error:any):void{
       col: error.colno || "", // 列
     }
   }
+  console.log("错误信息", msg);
   report(msg)
 }
 
@@ -463,12 +464,12 @@ export function handleApi(url, success, time, code, msg, beigin) {
     ...commonMsg,
     ...{
       t: 'api',
-      beigin,
+      beigin, // 接口请求开始时间
       url, // 接口
       success, // 成功？
       time, // 耗时
       code, // 接口返回的code
-      msg, // 信息
+      msg, // 信息（返回结果）
     }
   }
   // 过滤忽略的url
