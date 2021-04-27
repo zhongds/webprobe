@@ -23,7 +23,7 @@ interface CommonMsg{
   begin: number // 开始时间戳
   sr: string // 屏幕分辨率
   vp: string // view 分辨率
-  _v: string // 脚本sdk版本
+  pkv: string // 脚本sdk版本
   uid: string // user id
   sid: string // session id
   ct: string // 网络

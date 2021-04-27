@@ -18,7 +18,7 @@ export function getCommonMsg() {
     vp: getScreen(),
     ct: u ? u.effectiveType : '',
     ul: getLang(),
-    _v: '{{VERSION}}',
+    pkv: '{{VERSION}}',
     o: location.href,
   }
   return data
