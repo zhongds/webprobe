@@ -9,9 +9,9 @@ interface Records {
   data: ReportData
 }
 
-type ReportData = ErrorMsg | ResourceMsg | ApiMsg  | pvMsg | healthMsg | perfMsg | behaviorMsg | sumMsg | avgMsg | percentMsg | msgMsg
+type ReportData = ErrorMsg | ResourceMsg | ApiMsg  | pvMsg | uvMsg | healthMsg | perfMsg | behaviorMsg | sumMsg | avgMsg | percentMsg | msgMsg
 
-type MsgType = '' | 'error' | 'res' | 'api' | 'pv' | 'health' | 'perf' | 'behavior' | 'sum' | 'avg' | 'percent' | 'msg'
+type MsgType = '' | 'error' | 'res' | 'api' | 'pv' | 'uv' | 'health' | 'perf' | 'behavior' | 'sum' | 'avg' | 'percent' | 'msg'
 
 interface CommonMsg{
   t: MsgType // 类型
@@ -29,6 +29,11 @@ interface CommonMsg{
   ct: string // 网络
   ul: string // 语言
   o: string // 原始url
+}
+
+// uv上报
+interface uvMsg extends CommonMsg{
+  ip: string,
 }
 
 // pv上报

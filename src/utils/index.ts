@@ -24,6 +24,19 @@ export function getCommonMsg() {
   return data
 }
 
+// 判断是否要发UV。一天内一个用户只发一次
+export function isSendUv(): boolean {
+  const uvTag = localStorage.getItem('webprode_uv_tag') || '';
+  try {
+    if (uvTag && new Date().toDateString() === new Date(+uvTag).toDateString()) {
+      return false
+    }
+  } catch (error) {
+  }
+  localStorage.setItem('webprode_uv_tag', Date.now().toString());
+  return true
+}
+
 // 获取页面
 function getPage(): string {
   if (GlobalVal.page) return GlobalVal.page
@@ -34,10 +47,10 @@ function getPage(): string {
 
 // 获取uid
 function getUid(): string {
-  let uid = localStorage.getItem('bombay_uid') || '';
+  let uid = localStorage.getItem('webprode_uid') || '';
   if (!uid) {
     uid = randomString();
-    localStorage.setItem('bombay_uid', uid);
+    localStorage.setItem('webprode_uid', uid);
   }
   return uid;
 }
@@ -46,10 +59,10 @@ function getUid(): string {
 // TODO: 单页面
 // function getSid() {
 //   const date = new Date();
-//   let sid = sessionStorage.getItem('bombay_sid') || '';
+//   let sid = sessionStorage.getItem('webprode_sid') || '';
 //   if (!sid) {
 //       sid = randomString();
-//       sessionStorage.setItem('bombay_sid', sid);
+//       sessionStorage.setItem('webprode_sid', sid);
 //   }
 //   return sid;
 // }

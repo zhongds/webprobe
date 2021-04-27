@@ -9,9 +9,9 @@ let pkg = require('./package.json');
 export default {
   input: "src/index.ts",
   output: {
-    file: "dist/bombay.js",
+    file: "dist/webprode.js",
     format: "umd",
-    name: "Bombay"
+    name: "Webprode"
   },
   plugins: [
     replace({

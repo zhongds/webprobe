@@ -2,7 +2,7 @@
 
 const Controller = require('egg').Controller;
 
-class BombayController extends Controller {
+class WebprodeController extends Controller {
   async index() {
     const { ctx } = this;
     const reqBody = ctx.request.body || '{}';
@@ -48,4 +48,4 @@ function returnData(code, data, msg) {
   }
 }
 
-module.exports = BombayController;
+module.exports = WebprodeController;

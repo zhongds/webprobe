@@ -27,13 +27,13 @@ npm run build
 
 ## 用法
 
-token在bombayjs-admin后台申请
+token暂时不校验
 
 ### 方法一
 ```html
-  <script src='../dist/bombay.js'></script>
+  <script src='../dist/webprode.js'></script>
   <script>
-    new Bombay({
+    new Webprode({
       token: 'xxx',
       reportUrl: 'http://127.0.0.1:7002/api/v1/report/web'
     })
@@ -41,19 +41,7 @@ token在bombayjs-admin后台申请
 ```
 
 ### 方法二
-```
-npm i bombayjs -S
-```
-
-```js
-import Bombay from 'bombayjs'
-或 var Bombay = require('bombayjs')
-
-new Bombay({
-  token: 'xxxx',
-  reportUrl: 'http://127.0.0.1:7002/api/v1/report/web'
-})
-```
+> 支持npm引入
 
 ## 配置
 ```js

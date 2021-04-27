@@ -1,17 +1,16 @@
 {
-  "name": "bombayjs",
+  "name": "webprode",
   "version": "1.0.9",
-  "description": "前端监控sdk",
-  "main": "dist/bombay.js",
+  "description": "前端上报sdk",
+  "main": "dist/webprode.js",
   "scripts": {
     "dev": "rollup -c -w",
-    "build": "rollup -c --environment INCLUDE_DEPS"
+    "build": "rollup -c --environment INCLUDE_DEPS,BUILD:production"
   },
   "repository": {
-    "type": "git",
-    "url": "https://github.com/bombayjs/bombayjs"
+    "type": "gitlab",
+    "url": "https://github.com/zhongds/webprobe.git"
   },
-  "author": "https://github.com/aoping",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.5.5",

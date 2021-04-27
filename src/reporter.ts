@@ -40,10 +40,10 @@ export function post(url, body) {
       xhr.setRequestHeader("Content-Type", "text/plain")
       xhr.send(JSON.stringify(body))
     } catch (e) {
-      warn('[bombayjs] Failed to log, POST请求失败')
+      warn('[webprode] Failed to log, POST请求失败')
     }
   } else {
-    warn('[bombayjs] Failed to log, 浏览器不支持XMLHttpRequest')
+    warn('[webprode] Failed to log, 浏览器不支持XMLHttpRequest')
   }
 }
 

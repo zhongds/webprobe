@@ -1,10 +1,10 @@
 import { Config, setConfig } from './config'
-import { handleErr, handlePv, handlePerf, handleHashchange, handleHistorystatechange, handleClick, handleBlur, handleResource, handleSum, handleAvg, handleMsg, handleHealth, handleApi,setPage, listenMessageListener, listenCircleListener, removeCircleListener, } from './handlers'
+import { handleErr, handleUv, handlePerf, handleHashchange, handleHistorystatechange, handleClick, handleBlur, handleResource, handleSum, handleAvg, handleMsg, handleHealth, handleApi,setPage, listenMessageListener, listenCircleListener, removeCircleListener, } from './handlers'
 import {on,off,parseHash} from './utils/tools'
 import { hackState, hackConsole, hackhook, } from './hack'
 import { setGlobalPage, setGlobalSid, setGlobalHealth, GlobalVal, } from './config/global'
 
-export default class Bombay {
+export default class Webprode {
 
   constructor(options, fn) {
     this.init(options)
@@ -21,6 +21,7 @@ export default class Bombay {
     let page = Config.enableSPA ? parseHash(location.hash.toLowerCase()) : location.pathname.toLowerCase()
     setPage(page, true)
 
+    Config.autoSendUv && this.sendUv();
     Config.isPage && this.sendPerf();
 
     Config.enableSPA && this.addListenRouterChange();
@@ -43,6 +44,10 @@ export default class Bombay {
 
   sendPerf() {
     handlePerf()
+  }
+
+  sendUv() {
+    handleUv();
   }
 
   // 发送资源

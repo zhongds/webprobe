@@ -1,11 +1,11 @@
 import { Config, getConfig, } from './config'
 import { queryString, serialize, each, parseHash, warn, splitGroup,on,off, isInIframe, findIndex, checkEdge, isTypeOf } from './utils/tools'
-import { getCommonMsg } from './utils/index'
+import { getCommonMsg, isSendUv } from './utils/index'
 import { report } from './reporter'
 import { setGlobalPage, setGlobalSid, setGlobalHealth, GlobalVal, resetGlobalHealth,} from './config/global'
 
-const CIRCLECLS = 'bombayjs-circle-active' // circle class类名
-const CIRCLESTYLEID = 'bombayjs-circle-css' // 插入的style标签id
+const CIRCLECLS = 'webprode-circle-active' // circle class类名
+const CIRCLESTYLEID = 'webprode-circle-css' // 插入的style标签id
 // 处理pv
 export function handlePv(): void {
   if (!Config.autoSendPv) return
@@ -19,6 +19,21 @@ export function handlePv(): void {
       dr: document.referrer,
       dpr: window.devicePixelRatio,
       de: document.charset,
+    }
+  }
+  report(msg)
+}
+
+//处理UV
+export function handleUv(): void {
+  if (!Config.autoSendUv) return
+  if (!isSendUv()) return
+  let commonMsg = getCommonMsg()
+  let msg: uvMsg = {
+    ...commonMsg,
+    ...{
+      t: 'uv',
+      ip: '',
     }
   }
   report(msg)
@@ -59,11 +74,10 @@ export function handleClick(event) {
     let target = event.target
     let clsArray = target.className.split(/\s+/)
     let path = getElmPath(event.target)
-    // clsArray 为 ['bombayjs-circle-active] 或 ['', 'bombayjs-circle-active]时
     if (clsArray.length === 1 || (clsArray.length === 2 && clsArray[0] === '')) {
-      path = path.replace(/\.\.bombayjs-circle-active/, '')
+      path = path.replace(/\.\.webprode-circle-active/, '')
     } else {
-      path = path.replace(/\.bombayjs-circle-active/, '')
+      path = path.replace(/\.webprode-circle-active/, '')
     }
     window.parent.postMessage({
       t: 'setElmPath',
@@ -539,7 +553,7 @@ export function handleHover(e) {
   var cls = document.getElementsByClassName(CIRCLECLS)
   if (cls.length > 0) {
     for (var i = 0; i < cls.length; i++) {
-      cls[i].className = cls[i].className.replace(/ bombayjs-circle-active/g, '')
+      cls[i].className = cls[i].className.replace(/ webprode-circle-active/g, '')
     }
   }
   e.target.className += ` ${CIRCLECLS}`

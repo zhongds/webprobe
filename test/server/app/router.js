@@ -5,5 +5,5 @@
  */
 module.exports = app => {
   const { router, controller } = app;
-  router.all('/api/v1/report/web', controller.bombay.index);
+  router.all('/api/v1/report/web', controller.webprode.index);
 };
